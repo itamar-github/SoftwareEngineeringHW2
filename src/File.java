@@ -39,4 +39,31 @@ public class File extends StorageItem {
                 + "Mb Created: "+this.getCreationDate());
         System.out.println(this.content);
     }
+
+    /**
+     * add content to file
+     * @param s String object
+     */
+    public void addContent(String s) {
+        this.content += s;
+    }
+
+    /**
+     * check if the file has name 'name'
+     * @param item StorageItem object
+     * @return boolean
+     */
+    @Override
+    protected boolean contains(StorageItem item) {
+        return this.nameEquals(item);
+    }
+
+    /**
+     * @param path String object
+     * @return itself
+     */
+    @Override
+    public File findFile(String path) {
+        return this;
+    }
 }
