@@ -1,2 +1,6 @@
-public enum SortingField {
+public enum SortingField
+{
+    NAME,
+    SIZE,
+    DATE
 }
