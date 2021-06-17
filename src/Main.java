@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.*;
 
 public class Main {
@@ -5,6 +6,17 @@ public class Main {
 
     public static void main(String[] args) {
         rnd = new Random(42);
+
+        Timestamp ftstmp = new Timestamp(119, 11, 6, 11, 51, 15, 182);
+        Timestamp ststmp = new Timestamp(118, 7, 10, 14, 41, 39, 272);
+
+        System.out.println(ftstmp + ", " + ftstmp.getTime());
+        System.out.println(ststmp + ", " + ststmp.getTime());
+
+        System.out.println(StorageItem.EARLIEST_DATE + ", " + StorageItem.EARLIEST_DATE.getTime());
+        System.out.println(StorageItem.LATEST_DATE + ", " + StorageItem.LATEST_DATE.getTime());
+
+        System.out.println(new Timestamp(1636876993182L));
 
         Folder fo1 = new Folder("B");
         File fi1 = new File("bye", "log");
@@ -34,7 +46,7 @@ public class Main {
         System.out.println("Sorting by date:");
         fo2.printTree(SortingField.DATE);
         System.out.println("\n");
-/*
+
         String[] paths = {"aa.py", "B/code.java", "B/C/code.java", "AA.txt"};
 
         for (String path : paths) {
@@ -47,7 +59,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-*/
+
         Folder f = new Folder("Testing");
         Folder temp1 = f;
         for (int i = 1; i <= 10; i++) {

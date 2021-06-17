@@ -38,48 +38,38 @@ public class Folder extends StorageItem {
      * @param path String object
      * @return File object
      */
-    /*
     @Override
     public File findFile(String path) {
+        // check if path is empty
         if (path == null || path.isEmpty()) {
             return null;
         }
-        //String[] pathParts = splitHeadPath(path);
+
+        // split path to current name and rest of path
         String[] pathParts = path.split("/", 2);
+
+        // if this is the end of the path, the path is a name of a desired file.
+        // but, if we reached this portion, it means there is no file at the end
+        // of the path, and therefore, return null.
         if (pathParts.length == 1) {
-            return (File) this.findInFolder(pathParts[0]);
+            pathParts = new String[2];
+            pathParts[0] = path;
+            pathParts[1] = path;
         }
 
-
-
-        File toReturn = this.findFile(pathParts[0]);
-        return toReturn.findFile(pathParts[1]);
-    }
-*/
-    /**
-     * internal method for recursive implementation of findFile
-     * @param path String object
-     * @return StorageItem object
-     */
-    /*
-    private StorageItem internalFindFile(String path) throws NoSuchMethodError {
-        if (path == null || path.isEmpty()) {
+        // find the desired item in this folder then recursively call findFile.
+        // findInFolder might return null, then calling findFile will throw
+        // NullPointerException. in that case, the file was not found, therefore
+        // return null. we catch runtime exception to cover ClassCastException
+        // as well (but it should not happen).
+        try {
+            return (File) this.findInFolder(pathParts[0])
+                    .findFile(pathParts[1]);
+        } catch (RuntimeException e) {
             return null;
         }
-
-        String[] pathParts = path.split("/", 2);
-        StorageItem nextStep;
-        try {
-            nextStep = this.findInFolder(pathParts[0]);
-        }
-        catch (NoSuchMethodError error) {
-            if(pathParts.length == 1) {
-                return this;
-            }
-        }
-
     }
-*/
+
     /**
      * print the system tree stating from the current item.
      * @param field enum SortingField object

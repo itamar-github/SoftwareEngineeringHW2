@@ -1,3 +1,5 @@
+import java.sql.Timestamp;
+
 public class File extends StorageItem {
     private String ext;
     private String content;
@@ -35,8 +37,9 @@ public class File extends StorageItem {
      * prints a description of the file and its content
      */
     public void printContent(){
-        System.out.println(this.getName() + "Size: " + this.getSize()
-                + "Mb Created: "+this.getDate());
+        Timestamp date = new Timestamp(this.getDate());
+        System.out.println(this.getName() + " Size " + this.getSize()
+                + "MB Created: " + date);
         System.out.println(this.content);
     }
 
@@ -62,12 +65,15 @@ public class File extends StorageItem {
      * @param path String object
      * @return itself
      */
-    /*
     @Override
     public File findFile(String path) {
-        return this;
+        if(this.nameEquals(path)) {
+            return this;
+        }
+
+        return null;
     }
-*/
+
     /**
      * print the system tree stating from the current item.
      * @param field enum SortingField object

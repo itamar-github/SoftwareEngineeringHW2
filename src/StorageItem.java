@@ -1,5 +1,4 @@
 import java.sql.Timestamp;
-import java.util.Comparator;
 
 public abstract class StorageItem {
     private String name;
@@ -8,9 +7,9 @@ public abstract class StorageItem {
     public static final String INDENT = "|    ";
 
     // Timestamp objects to hold margins for new file creation dates.
-    private static final Timestamp EARLIEST_DATE = new Timestamp(2017, 1, 1 ,
+    public static final Timestamp EARLIEST_DATE = new Timestamp(117, 0, 1 ,
             0, 0,0, 0);
-    private static final Timestamp LATEST_DATE = new Timestamp(2021, 12, 31,
+    public static final Timestamp LATEST_DATE = new Timestamp(121, 11, 31,
             23, 59, 59, 0);
 
     /**
@@ -19,11 +18,20 @@ public abstract class StorageItem {
      */
     public StorageItem(String name) {
         this.name = name;
+        long rand = Main.rnd.nextLong();
+        if(name.equals("aa")) {
+            System.out.println(rand);
+        }
+        //rand = rand >= 0 ? rand : (-1) * rand;
+        if(name.equals("aa")) {
+            System.out.println(rand);
+            System.out.println(EARLIEST_DATE.getTime());
+            System.out.println(LATEST_DATE.getTime() - EARLIEST_DATE.getTime());
+        }
         // set the creation date to a random date between EARLIEST_DATE and
         // LATEST_DATE.
-        creationDate = EARLIEST_DATE.getTime() +
-                (Main.rnd.nextLong() %
-                        (LATEST_DATE.getTime() - EARLIEST_DATE.getTime()));
+        this.creationDate = EARLIEST_DATE.getTime() +
+                (rand % (LATEST_DATE.getTime() - EARLIEST_DATE.getTime()));
     }
 
     /**
@@ -66,25 +74,14 @@ public abstract class StorageItem {
     /**
      * @return item in a given path.
      */
-    /*
     public abstract StorageItem findFile(String path);
-*/
+
     /**
      * check if the storage item contains an item with name 'name'.
      * @param item StorageItem object
      * @return boolean
      */
     protected abstract boolean contains(StorageItem item);
-
-    /**
-     * check if item has the same name as item
-     * (can be added to the same folder as item)
-     * @param item StorageItem object to compare
-     * @return boolean - true if equals, false otherwise
-     */
-    protected boolean nameEquals(StorageItem item) {
-        return this.getName().equals(item.getName());
-    }
 
     /**
      * check if item has the same name as 'name'
@@ -94,5 +91,15 @@ public abstract class StorageItem {
      */
     protected boolean nameEquals(String name) {
         return this.getName().equals(name);
+    }
+
+    /**
+     * check if item has the same name as item
+     * (can be added to the same folder as item)
+     * @param item StorageItem object to compare
+     * @return boolean - true if equals, false otherwise
+     */
+    protected boolean nameEquals(StorageItem item) {
+        return this.nameEquals(item.getName());
     }
 }
