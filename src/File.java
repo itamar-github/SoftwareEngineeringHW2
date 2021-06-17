@@ -19,7 +19,7 @@ public class File extends StorageItem {
      */
     @Override
     public String getName(){
-        return super.getName() + "." +this.ext;
+        return super.getName() + "." + this.ext;
     }
 
     /**
@@ -36,7 +36,7 @@ public class File extends StorageItem {
      */
     public void printContent(){
         System.out.println(this.getName() + "Size: " + this.getSize()
-                + "Mb Created: "+this.getCreationDate());
+                + "Mb Created: "+this.getDate());
         System.out.println(this.content);
     }
 
@@ -62,8 +62,32 @@ public class File extends StorageItem {
      * @param path String object
      * @return itself
      */
+    /*
     @Override
     public File findFile(String path) {
         return this;
+    }
+*/
+    /**
+     * print the system tree stating from the current item.
+     * @param field enum SortingField object
+     */
+    @Override
+    public void printTree(SortingField field) {
+        this.printTree(field, 0);
+    }
+
+    /**
+     * inner function for printTree to control indent
+     * @param field enum SortingField to sort by
+     * @param indent int to capture the number of indents to print (depth of
+     *               item in the system from wrapper function call.
+     */
+    @Override
+    protected void printTree(SortingField field, int indent) {
+        for(int i = 0; i < indent; i++) {
+            System.out.print(INDENT);
+        }
+        System.out.println(this.getName());
     }
 }

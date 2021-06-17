@@ -5,6 +5,8 @@ public abstract class StorageItem {
     private String name;
     private final long creationDate;
 
+    public static final String INDENT = "|    ";
+
     // Timestamp objects to hold margins for new file creation dates.
     private static final Timestamp EARLIEST_DATE = new Timestamp(2017, 1, 1 ,
             0, 0,0, 0);
@@ -43,7 +45,7 @@ public abstract class StorageItem {
     /**
      * @return long variable
      */
-    public long getCreationDate() {
+    public long getDate() {
         return creationDate;
     }
 
@@ -51,50 +53,22 @@ public abstract class StorageItem {
      * print the system tree stating from the current item.
      * @param field enum SortingField object
      */
-    public void printTree(SortingField field) {
+    public abstract void printTree(SortingField field);
 
-    }
+    /**
+     * inner function for printTree to control indent
+     * @param field enum SortingField to sort by
+     * @param indent int to capture the number of indents to print (depth of
+     *               item in the system from wrapper function call.
+     */
+    protected abstract void printTree(SortingField field, int indent);
 
     /**
      * @return item in a given path.
      */
+    /*
     public abstract StorageItem findFile(String path);
-
-    static class itemsSortByName implements Comparator<StorageItem> {
-        /**
-         * used to sort storage items by name in ascending order.
-         * @param firstItem StorageItem object
-         * @param secondItem StorageItem object
-         * @return int
-         */
-        @Override
-        public int compare(StorageItem firstItem, StorageItem secondItem) {
-            return firstItem.name.compareTo(secondItem.name);
-        }
-    }
-
-    static class itemsSortByDate implements Comparator<StorageItem> {
-        /**
-         * used to sort storage items by name in ascending order.
-         * @param firstItem StorageItem object
-         * @param secondItem StorageItem object
-         * @return int
-         */
-        @Override
-        public int compare(StorageItem firstItem, StorageItem secondItem) {
-
-            if(firstItem.creationDate > secondItem.creationDate) {
-                return 1;
-            }
-            else if(firstItem.creationDate < secondItem.creationDate) {
-                return -1;
-            }
-            else {
-                return 0;
-            }
-        }
-    }
-
+*/
     /**
      * check if the storage item contains an item with name 'name'.
      * @param item StorageItem object

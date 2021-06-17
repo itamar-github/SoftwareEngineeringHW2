@@ -34,7 +34,7 @@ public class Main {
         System.out.println("Sorting by date:");
         fo2.printTree(SortingField.DATE);
         System.out.println("\n");
-
+/*
         String[] paths = {"aa.py", "B/code.java", "B/C/code.java", "AA.txt"};
 
         for (String path : paths) {
@@ -47,7 +47,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-
+*/
         Folder f = new Folder("Testing");
         Folder temp1 = f;
         for (int i = 1; i <= 10; i++) {

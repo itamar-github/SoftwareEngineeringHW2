@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.lang.StringBuilder;
+import java.util.Comparator;
 
 public class Folder extends StorageItem {
     private int size;
@@ -38,6 +38,7 @@ public class Folder extends StorageItem {
      * @param path String object
      * @return File object
      */
+    /*
     @Override
     public File findFile(String path) {
         if (path == null || path.isEmpty()) {
@@ -54,12 +55,13 @@ public class Folder extends StorageItem {
         File toReturn = this.findFile(pathParts[0]);
         return toReturn.findFile(pathParts[1]);
     }
-
+*/
     /**
      * internal method for recursive implementation of findFile
      * @param path String object
      * @return StorageItem object
      */
+    /*
     private StorageItem internalFindFile(String path) throws NoSuchMethodError {
         if (path == null || path.isEmpty()) {
             return null;
@@ -72,10 +74,38 @@ public class Folder extends StorageItem {
         }
         catch (NoSuchMethodError error) {
             if(pathParts.length == 1) {
-                this.findFile(pathParts[0]);
+                return this;
             }
         }
 
+    }
+*/
+    /**
+     * print the system tree stating from the current item.
+     * @param field enum SortingField object
+     */
+    @Override
+    public void printTree(SortingField field) {
+        this.printTree(field, 0);
+    }
+
+    /**
+     * inner function for printTree to control indent
+     * @param field enum SortingField to sort by
+     * @param indent int to capture the number of indents to print (depth of
+     *               item in the system from wrapper function call.
+     */
+    @Override
+    protected void printTree(SortingField field, int indent) {
+        this.sortItems(field);
+        for(int i = 0; i < indent; i++) {
+            System.out.print(INDENT);
+        }
+        System.out.println(this.getName());
+
+        for(StorageItem item : this.items) {
+            item.printTree(field, indent + 1);
+        }
     }
 
     /**
@@ -108,10 +138,25 @@ public class Folder extends StorageItem {
     }
 
     /**
-     * sort the items in the folder by the given sorting field
-     * @param field SortingField enum type
+     * sort the items list by the given field
+     * @param field SortingField to sort by
      */
     private void sortItems(SortingField field) {
-
+        switch (field) {
+            // primary sort by creation date, secondary sort by name
+            case DATE:
+                this.items.sort(Comparator.comparing(StorageItem::getDate)
+                        .thenComparing(StorageItem::getName));
+                break;
+            // sort by name
+            case NAME:
+                this.items.sort(Comparator.comparing(StorageItem::getName));
+                break;
+            // primary sort by size, secondary sort by name
+            case SIZE:
+                this.items.sort(Comparator.comparing(StorageItem::getSize)
+                        .thenComparing(StorageItem::getName));
+                break;
+        }
     }
 }
