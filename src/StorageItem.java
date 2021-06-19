@@ -19,17 +19,8 @@ public abstract class StorageItem {
     public StorageItem(String name) {
         this.name = name;
         long rand = Main.rnd.nextLong();
-        if(name.equals("aa")) {
-            System.out.println(rand);
-        }
-        //rand = rand >= 0 ? rand : (-1) * rand;
-        if(name.equals("aa")) {
-            System.out.println(rand);
-            System.out.println(EARLIEST_DATE.getTime());
-            System.out.println(LATEST_DATE.getTime() - EARLIEST_DATE.getTime());
-        }
-        // set the creation date to a random date between EARLIEST_DATE and
-        // LATEST_DATE.
+        rand = rand >= 0 ? rand : (-1) * rand;
+
         this.creationDate = EARLIEST_DATE.getTime() +
                 (rand % (LATEST_DATE.getTime() - EARLIEST_DATE.getTime()));
     }

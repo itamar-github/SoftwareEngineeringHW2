@@ -7,16 +7,6 @@ public class Main {
     public static void main(String[] args) {
         rnd = new Random(42);
 
-        Timestamp ftstmp = new Timestamp(119, 11, 6, 11, 51, 15, 182);
-        Timestamp ststmp = new Timestamp(118, 7, 10, 14, 41, 39, 272);
-
-        System.out.println(ftstmp + ", " + ftstmp.getTime());
-        System.out.println(ststmp + ", " + ststmp.getTime());
-
-        System.out.println(StorageItem.EARLIEST_DATE + ", " + StorageItem.EARLIEST_DATE.getTime());
-        System.out.println(StorageItem.LATEST_DATE + ", " + StorageItem.LATEST_DATE.getTime());
-
-        System.out.println(new Timestamp(1636876993182L));
 
         Folder fo1 = new Folder("B");
         File fi1 = new File("bye", "log");

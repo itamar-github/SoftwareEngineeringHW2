@@ -38,7 +38,7 @@ public class File extends StorageItem {
      */
     public void printContent(){
         Timestamp date = new Timestamp(this.getDate());
-        System.out.println(this.getName() + " Size " + this.getSize()
+        System.out.println(this.getName() + " Size: " + this.getSize()
                 + "MB Created: " + date);
         System.out.println(this.content);
     }
