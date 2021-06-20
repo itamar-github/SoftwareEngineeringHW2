@@ -7,10 +7,8 @@ public abstract class StorageItem {
     public static final String INDENT = "|    ";
 
     // Timestamp objects to hold margins for new file creation dates.
-    public static final Timestamp EARLIEST_DATE = new Timestamp(117, 0, 1 ,
-            0, 0,0, 0);
-    public static final Timestamp LATEST_DATE = new Timestamp(121, 11, 31,
-            23, 59, 59, 0);
+    public static final Timestamp EARLIEST_DATE = Timestamp.valueOf("2017-01-01 00:00:00");
+    public static final Timestamp LATEST_DATE = Timestamp.valueOf("2021-12-31 23:59:59");
 
     /**
      * Constructor for StorageItem abstract class
