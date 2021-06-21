@@ -6,13 +6,15 @@ public abstract class StorageItem {
 
     public static final String INDENT = "|    ";
 
-    // Timestamp objects to hold margins for new file creation dates.
-    public static final Timestamp EARLIEST_DATE = Timestamp.valueOf("2017-01-01 00:00:00");
-    public static final Timestamp LATEST_DATE = Timestamp.valueOf("2021-12-31 23:59:59");
+    // Timestamp objects to hold margins for file creation dates.
+    public static final Timestamp EARLIEST_DATE =
+            Timestamp.valueOf("2017-01-01 00:00:00");
+    public static final Timestamp LATEST_DATE =
+            Timestamp.valueOf("2021-12-31 23:59:59");
 
     /**
      * Constructor for StorageItem abstract class
-     * @param name String object.
+     * @param name String object which will be the name of the new item
      */
     public StorageItem(String name) {
         this.name = name;
@@ -24,23 +26,19 @@ public abstract class StorageItem {
     }
 
     /**
-     * @param name String object
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return String object
+     * @return String object which is the name of the item.
      */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return int which is the size of the item.
+     */
     public abstract int getSize();
 
     /**
-     * @return long variable
+     * @return long variable which is the creation date of the item.
      */
     public long getDate() {
         return creationDate;
@@ -61,7 +59,7 @@ public abstract class StorageItem {
     protected abstract void printTree(SortingField field, int indent);
 
     /**
-     * @return item in a given path.
+     * @return item in a given path if found, null if not.
      */
     public abstract StorageItem findFile(String path);
 

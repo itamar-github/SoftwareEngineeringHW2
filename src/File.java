@@ -16,7 +16,6 @@ public class File extends StorageItem {
     }
 
     /**
-     *
      * @return returns a String with file name and extension
      */
     @Override
@@ -25,7 +24,6 @@ public class File extends StorageItem {
     }
 
     /**
-     *
      * @return returns the size of the file
      */
     @Override
@@ -45,7 +43,7 @@ public class File extends StorageItem {
 
     /**
      * add content to file
-     * @param s String object
+     * @param s String object to add to the file
      */
     public void addContent(String s) {
         this.content += s;
@@ -54,7 +52,7 @@ public class File extends StorageItem {
     /**
      * check if the file has name 'name'
      * @param item StorageItem object
-     * @return boolean
+     * @return boolean which the truth value of the comparison.
      */
     @Override
     protected boolean contains(StorageItem item) {
@@ -63,7 +61,8 @@ public class File extends StorageItem {
 
     /**
      * @param path String object
-     * @return itself
+     * @return if the file's name matches the path given, return this File.
+     *         otherwise return null.
      */
     @Override
     public File findFile(String path) {
@@ -76,7 +75,7 @@ public class File extends StorageItem {
 
     /**
      * print the system tree stating from the current item.
-     * @param field enum SortingField object
+     * @param field enum SortingField object to specify sort key.
      */
     @Override
     public void printTree(SortingField field) {
@@ -86,8 +85,8 @@ public class File extends StorageItem {
     /**
      * inner function for printTree to control indent
      * @param field enum SortingField to sort by
-     * @param indent int to capture the number of indents to print (depth of
-     *               item in the system from wrapper function call.
+     * @param indent int which is the number of indents to print (depth of
+     *               item in the system from wrapper function call).
      */
     @Override
     protected void printTree(SortingField field, int indent) {

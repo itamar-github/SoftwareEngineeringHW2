@@ -5,6 +5,10 @@ public class Folder extends StorageItem {
     private int size;
     private final ArrayList<StorageItem> items;
 
+    /**
+     * constructor for class Folder
+     * @param name String object which will be the name of the folder.
+     */
     public Folder(String name) {
         super(name);
         this.items = new ArrayList<>();
@@ -20,8 +24,8 @@ public class Folder extends StorageItem {
      * check if the folder has an item with same name and ext.
      * if there is, return false. otherwise add item to the folder and
      * return true.
-     * @param item StorageItem object
-     * @return boolean
+     * @param item StorageItem object to add to the folder
+     * @return boolean - true if added successfully or false if not.
      */
     public boolean addItem(StorageItem item) {
         if(this.contains(item)) {
@@ -35,8 +39,8 @@ public class Folder extends StorageItem {
     /**
      * return the file with the given path.
      * if not found return null.
-     * @param path String object
-     * @return File object
+     * @param path String object which is the path to a file.
+     * @return File object if found or null if not found.
      */
     @Override
     public File findFile(String path) {
@@ -72,7 +76,7 @@ public class Folder extends StorageItem {
 
     /**
      * print the system tree stating from the current item.
-     * @param field enum SortingField object
+     * @param field enum SortingField object to sort by.
      */
     @Override
     public void printTree(SortingField field) {
@@ -82,8 +86,8 @@ public class Folder extends StorageItem {
     /**
      * inner function for printTree to control indent
      * @param field enum SortingField to sort by
-     * @param indent int to capture the number of indents to print (depth of
-     *               item in the system from wrapper function call.
+     * @param indent int which is the number of indents to print (depth of
+     *               item in the system from wrapper function call).
      */
     @Override
     protected void printTree(SortingField field, int indent) {
@@ -100,8 +104,9 @@ public class Folder extends StorageItem {
 
     /**
      * check if the folder contains an item with name 'name'
-     * @param item String object
-     * @return boolean
+     * @param item String object which is the name we want to check if is in
+     *             the folder.
+     * @return boolean which is true if the name was found and false if not.
      */
     @Override
     protected boolean contains(StorageItem item) {
@@ -115,8 +120,8 @@ public class Folder extends StorageItem {
 
     /**
      * find an item in the current folder by name.
-     * @param name String object
-     * @return StorageItem if found, null if failed.
+     * @param name String object to search for in the items' list.
+     * @return StorageItem if found, null if not found.
      */
     private StorageItem findInFolder(String name) {
         for(StorageItem item : this.items) {
